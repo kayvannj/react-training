@@ -1,12 +1,14 @@
-// make sure you have key for each item in the list
-// there are no for loops in jsx so we need to use map instead
+// Conditional rendering
+// can use ternary operator and return null or can use && as you can see below
 
 function ListGroup() {
-  const items = ["San Francisco", "New York", "Los Angles"];
+  var items = ["San Francisco", "New York", "Los Angles"];
+  items = [];
 
   return (
     <>
       <h1>List</h1>
+      {items.length === 0 && <p>Empty Items</p>}
       <ul className="list-group">
         {items.map((item) => (
           <li className="list-group-item" key={item}>
