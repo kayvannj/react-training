@@ -1,13 +1,20 @@
+import { useState } from "react";
 import Alert from "./components/Alert";
 import Button from "./components/Button";
 
 function App() {
+  const [showAlert, setShowAlert] = useState(false);
+
+  let alert = (
+    <Alert onDismiss={() => setShowAlert(false)}>
+      Hello <span>World</span>
+    </Alert>
+  );
+
   return (
     <div>
-      <Alert>
-        Hello <span>World</span>
-      </Alert>
-      <Button onClick={() => console.log("clicked")} color="primary">
+      {showAlert && alert}
+      <Button onClick={() => setShowAlert(true)} color="primary">
         Submit
       </Button>
     </div>
