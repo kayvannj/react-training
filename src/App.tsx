@@ -2,23 +2,38 @@ import { useState } from "react";
 import Alert from "./components/Alert";
 import Button from "./components/Button";
 import Like from "./components/Like";
+import ListGroup from "./components/ListGroup/ListGroup";
 
 function App() {
-  const [game, setGame] = useState({
-    id: 1,
-    player: {
-      name: "John",
-    },
+  const [pizza, setPizza] = useState({
+    name: "Spicy Pepperoni",
+    toppings: ["Mushroom"],
   });
 
-  const handleClick = () => {
-    setGame({ ...game, player: { ...game.player, name: "Kayvan" } });
+  const removeTopping = (item: string) => {
+    setPizza({
+      ...pizza,
+      toppings: pizza.toppings.filter((topping) => topping !== item),
+    });
+  };
+
+  const addTopping = () => {
+    setPizza({
+      ...pizza,
+      toppings: [...pizza.toppings, "Tomato"],
+    });
   };
 
   return (
     <div>
-      <p>{game.player.name}</p>
-      <Button onClick={handleClick} color="primary">
+      <div>
+        <ListGroup
+          items={pizza.toppings}
+          heading={pizza.name}
+          onSelectItem={removeTopping}
+        ></ListGroup>
+      </div>
+      <Button onClick={addTopping} color="primary">
         change name
       </Button>
     </div>
